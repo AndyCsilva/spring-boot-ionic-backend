@@ -43,6 +43,9 @@ public class Cliente implements Serializable {
 	@Column(name="telefone")
 	private Set<String> telefones = new HashSet<>();
 	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
@@ -53,7 +56,7 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 		this.email = email;
 		this.cpfCnpj = cpfCnpj;
-		this.tipo = tipo.getCodigo();
+		this.tipo = tipo == null ? null : tipo.getCodigo();
 	}
 
 	public Integer getId() {
@@ -93,7 +96,7 @@ public class Cliente implements Serializable {
 	}
 
 	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo.getCodigo();
+		this.tipo = tipo == null ? null : tipo.getCodigo();
 	}
 
 	public List<Endereco> getEnderecos() {
@@ -110,6 +113,14 @@ public class Cliente implements Serializable {
 
 	public void setTelefones(Set<String> telefone) {
 		this.telefones = telefone;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	@Override
@@ -136,6 +147,5 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-	
 	
 }

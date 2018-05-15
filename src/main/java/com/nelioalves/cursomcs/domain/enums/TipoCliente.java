@@ -1,10 +1,5 @@
 package com.nelioalves.cursomcs.domain.enums;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.h2.value.NullableKeyConcurrentMap;
-
 public enum TipoCliente {
 
 	PESSOA_FISICA(1, "Pessoa Física"),
