@@ -13,18 +13,18 @@ import com.nelioalves.cursomcs.domain.Categoria;
 import com.nelioalves.cursomcs.services.CategoriaService;
 
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value = "/categorias")
 public class CategoriaResource {
 
 	@Autowired
 	private CategoriaService categoriaService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Categoria> listar() {
 		return categoriaService.buscarTodos();
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value="/{id}")
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Integer id) {
 		Categoria categoria = categoriaService.buscar(id);
 		return ResponseEntity.ok(categoria);

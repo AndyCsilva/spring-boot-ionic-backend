@@ -1,7 +1,7 @@
 package com.nelioalves.cursomcs.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
-	
+
 	/**
 	 * 
 	 */
@@ -10,11 +10,11 @@ public class ObjectNotFoundException extends RuntimeException {
 	public ObjectNotFoundException(String msg) {
 		super(msg);
 	}
-	
+
 	public ObjectNotFoundException(Throwable cause) {
 		super(cause);
 	}
-	
+
 	public ObjectNotFoundException(String msg, Throwable cause) {
 		super(msg, cause);
 	}

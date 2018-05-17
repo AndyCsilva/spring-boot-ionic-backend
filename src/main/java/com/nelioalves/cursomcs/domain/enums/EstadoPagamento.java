@@ -2,9 +2,7 @@ package com.nelioalves.cursomcs.domain.enums;
 
 public enum EstadoPagamento {
 
-	PENDENTE(1, "Pendente"), 
-	QUITADO(2, "Quitado"), 
-	CANCELADO(3, "Cancelado");
+	PENDENTE(1, "Pendente"), QUITADO(2, "Quitado"), CANCELADO(3, "Cancelado");
 
 	private int codigo;
 	private String descricao;
@@ -14,19 +12,19 @@ public enum EstadoPagamento {
 		this.descricao = descricao;
 
 	}
-	
+
 	public static EstadoPagamento toEnum(Integer codigo) {
 		if (codigo == null) {
 			return null;
 		}
-		
-		for(EstadoPagamento tc: EstadoPagamento.values()) {
-			if (codigo.intValue() ==  tc.getCodigo()) {
+
+		for (EstadoPagamento tc : EstadoPagamento.values()) {
+			if (codigo.intValue() == tc.getCodigo()) {
 				return tc;
-			}	
+			}
 		}
-		
-		throw new  IllegalArgumentException("Id inválido: " + codigo);
+
+		throw new IllegalArgumentException("Id inválido: " + codigo);
 	}
 
 	public int getCodigo() {

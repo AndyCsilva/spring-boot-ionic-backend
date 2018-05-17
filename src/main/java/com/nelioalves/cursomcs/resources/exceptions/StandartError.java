@@ -3,7 +3,7 @@ package com.nelioalves.cursomcs.resources.exceptions;
 import java.time.Instant;
 
 public class StandartError {
-	
+
 	private Instant timestamp;
 	private Integer status;
 	private String error;
@@ -18,7 +18,7 @@ public class StandartError {
 		this.message = message;
 		this.path = path;
 	}
-	
+
 	public Instant getTimestamp() {
 		return timestamp;
 	}
@@ -58,9 +58,5 @@ public class StandartError {
 	public void setPath(String path) {
 		this.path = path;
 	}
-
-	
-	
-	
 
 }

@@ -14,14 +14,10 @@ import com.nelioalves.cursomcs.services.exceptions.ObjectNotFoundException;
 public class ResorceExceptionHandler {
 
 	@ExceptionHandler(ObjectNotFoundException.class)
-	public ResponseEntity<StandartError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request){
-		StandartError error = new StandartError(
-				Instant.now(),
-				HttpStatus.NOT_FOUND.value(),
-				HttpStatus.NOT_FOUND.getReasonPhrase(),
-				e.getMessage(),
-				request.getRequestURI());
+	public ResponseEntity<StandartError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
+		StandartError error = new StandartError(Instant.now(), HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
-	
+
 }

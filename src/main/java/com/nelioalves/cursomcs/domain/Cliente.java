@@ -15,8 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomcs.domain.enums.TipoCliente;
 
 @Entity
@@ -28,26 +27,25 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String email;
 	private String cpfCnpj;
 	private Integer tipo;
-	
-	@JsonManagedReference
-	@OneToMany(mappedBy="cliente")
+
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
-	
+
 	@ElementCollection
-	@CollectionTable(name="TELEFONE")
-	@Column(name="telefone")
+	@CollectionTable(name = "TELEFONE")
+	@Column(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
-	
-	@JsonBackReference
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
-	
+
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
@@ -116,7 +114,7 @@ public class Cliente implements Serializable {
 	public void setTelefones(Set<String> telefone) {
 		this.telefones = telefone;
 	}
-	
+
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -149,5 +147,5 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

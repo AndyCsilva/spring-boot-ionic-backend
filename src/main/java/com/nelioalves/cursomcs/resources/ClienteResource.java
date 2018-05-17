@@ -13,18 +13,18 @@ import com.nelioalves.cursomcs.domain.Cliente;
 import com.nelioalves.cursomcs.services.ClienteService;
 
 @RestController
-@RequestMapping(value="/clientes")
+@RequestMapping(value = "/clientes")
 public class ClienteResource {
 
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Cliente> listar() {
 		return clienteService.buscarTodos();
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value="/{id}")
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Integer id) {
 		Cliente cliente = clienteService.buscar(id);
 		return ResponseEntity.ok(cliente);

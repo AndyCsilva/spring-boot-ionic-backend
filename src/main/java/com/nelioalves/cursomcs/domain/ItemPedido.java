@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ItemPedido implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -18,13 +18,13 @@ public class ItemPedido implements Serializable {
 	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
-	
+
 	private Double desconto;
-	
+
 	private Integer quantidade;
-	
+
 	private Double preco;
-	
+
 	public ItemPedido() {
 	}
 
@@ -32,7 +32,7 @@ public class ItemPedido implements Serializable {
 		super();
 		this.id.setPedido(pedido);
 		this.id.setProduto(produto);
-		
+
 		this.desconto = desconto;
 		this.quantidade = quantidade;
 		this.preco = preco;
@@ -42,11 +42,11 @@ public class ItemPedido implements Serializable {
 	public Pedido getPedido() {
 		return this.id.getPedido();
 	}
-	
+
 	public Produto getProduto() {
 		return this.id.getProduto();
 	}
-	
+
 	public ItemPedidoPK getId() {
 		return id;
 	}
@@ -79,8 +79,6 @@ public class ItemPedido implements Serializable {
 		this.preco = preco;
 	}
 
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -88,8 +86,6 @@ public class ItemPedido implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
