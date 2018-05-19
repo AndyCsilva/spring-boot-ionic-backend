@@ -28,9 +28,16 @@ public class CategoriaResource {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public ResponseEntity<?> find(@PathVariable("id") Integer id) {
-		Categoria categoria = categoriaService.buscar(id);
+	public ResponseEntity<Categoria> find(@PathVariable("id") Integer id) {
+		Categoria categoria = categoriaService.find(id);
 		return ResponseEntity.ok(categoria);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable("id") Integer id) {
+		obj.setId(id);
+		obj = categoriaService.update(obj);
+ 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "")
