@@ -70,6 +70,11 @@ public class CursomcsApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Categoria informatica = new Categoria(null, "Informática");
 		Categoria escritorio = new Categoria(null, "Escritório");
+		Categoria camaMesaBanho = new Categoria(null, "Cama mesa e banho");
+		Categoria eletronicos = new Categoria(null, "Eletrônicos");
+		Categoria jardinagem = new Categoria(null, "Jardinagem");
+		Categoria decoracao = new Categoria(null, "Decoração");
+		Categoria perfumaria = new Categoria(null, "Perfumaria");
 
 		// cria os produtos e persiste, depois associa
 		Produto p1 = new Produto(null, "Computador", 2000D);
@@ -85,7 +90,8 @@ public class CursomcsApplication implements CommandLineRunner {
 
 		p2.getCategorias().add(escritorio);
 
-		List<Categoria> categorias = Arrays.asList(informatica, escritorio);
+		List<Categoria> categorias = Arrays.asList(informatica, escritorio, camaMesaBanho, eletronicos, jardinagem,
+				decoracao, perfumaria);
 		List<Produto> produtos = Arrays.asList(p1, p2, p3);
 
 		categoriaRepository.saveAll(categorias);
