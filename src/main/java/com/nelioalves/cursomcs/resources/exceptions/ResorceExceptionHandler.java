@@ -8,16 +8,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.nelioalves.cursomcs.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomcs.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResorceExceptionHandler {
 
-	@ExceptionHandler(ObjectNotFoundException.class)
+	@ExceptionHandler(value =ObjectNotFoundException.class)
 	public ResponseEntity<StandartError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
+		
 		StandartError error = new StandartError(Instant.now(), HttpStatus.NOT_FOUND.value(),
 				HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
 
+	@ExceptionHandler(value = DataIntegrityException.class)
+	
+	public ResponseEntity<StandartError> dataIntegrity(DataIntegrityException e, HttpServletRequest request) {
+		
+		StandartError error = new StandartError(Instant.now(), HttpStatus.BAD_REQUEST.value(),
+				HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
 }

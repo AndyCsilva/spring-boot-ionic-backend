@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.nelioalves.cursomcs.domain.Categoria;
 import com.nelioalves.cursomcs.repositories.CategoriaRepository;
+import com.nelioalves.cursomcs.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomcs.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -22,7 +24,7 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 
-	public List<Categoria> buscarTodos() {
+	public List<Categoria> findAll() {
 		return categoriaRepository.findAll();
 	}
 
@@ -34,5 +36,14 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return categoriaRepository.save(obj);
+	}
+
+	public void delete(Integer id) {
+		find(id);
+		try {
+			categoriaRepository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que contém produtos");
+		}
 	}
 }

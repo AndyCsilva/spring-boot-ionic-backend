@@ -24,7 +24,7 @@ public class CategoriaResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Categoria> listar() {
-		return categoriaService.buscarTodos();
+		return categoriaService.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
@@ -45,5 +45,11 @@ public class CategoriaResource {
 		obj = categoriaService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
  		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+		categoriaService.delete(id);
+ 		return ResponseEntity.noContent().build();
 	}
 }
