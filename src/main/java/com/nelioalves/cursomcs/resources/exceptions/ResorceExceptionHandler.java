@@ -3,6 +3,7 @@ package com.nelioalves.cursomcs.resources.exceptions;
 import java.time.Instant;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -24,8 +25,8 @@ public class ResorceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
 
-	@ExceptionHandler(value = DataIntegrityException.class)
-	public ResponseEntity<StandartError> dataIntegrity(DataIntegrityException e, HttpServletRequest request) {
+	@ExceptionHandler(value = {DataIntegrityException.class})
+	public ResponseEntity<StandartError> dataIntegrity(RuntimeException e, HttpServletRequest request) {
 		
 		StandartError error = new StandartError(Instant.now(), HttpStatus.BAD_REQUEST.value(),
 				HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage(), request.getRequestURI());
